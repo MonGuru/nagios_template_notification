@@ -1,0 +1,54 @@
+<html>
+  <body>
+<script type="application/ld+json">
+    {
+      "@context":               "http://schema.org",
+      "@type":                  "Restaurant",
+      "name":                   "Google Cafe",
+      "action": {
+        "@type":                "ReviewAction",
+        "review": {
+          "@type":              "Review",
+          "reviewRating": {
+            "@type":            "Rating",
+            "bestRating":       "5",
+            "worstRating":      "1"
+          }
+        },
+        "handler": {
+          "@type":              "HttpActionHandler",
+          "url":                "{{ review_url }}",
+          "encoding": {
+            "url":              "http://schema.org/Encoding/UrlEncoded"
+          },
+          "method":             "http://schema.org/HttpRequestMethod/POST",
+          "requiredProperty": {
+            "@type":            "Property",
+            "name":             "review.reviewRating.ratingValue"
+          },
+          "optionalProperty": {
+            "@type":            "Property",
+            "name":             "review.reviewBody"
+          }
+        }
+      }
+    }
+    </script>
+
+    <table border=0 width='98%' cellpadding=0 cellspacing=0>
+      <tr><td valign='top'>
+          <table border=0 cellpadding=0 cellspacing=0 width='97%'>
+            <tr bgcolor="{{ items.color }}"><td width='140'><b><font color=#ffffff>Notification:</font></b></td><td><font color=#ffffff><b>{{ items.notify_type }} [{{ items.serv_state }}]</b></font></td></tr>
+            <tr bgcolor=#fefefe><td><b>Host:</b></td><td><font color=#005500><b>{{ items.host_alias }}</b></font></td></tr>
+            <tr bgcolor=#eeeeee><td><b>Address:</b></td><td><font color=#005555><b>{{ items.host_address }}</b></font></td></tr>
+            <tr bgcolor=#fefefe><td><b>Date/Time:</b></td><td><font color=#005555>{{ items.long_date }}</font></td></tr>
+            <tr bgcolor=#fefefe><td><b>Additional Info:</b></td><td>{{ items.host_output }}</td></tr>
+            <tr bgcolor=#eeeeee><td><b>Total Servers Up:</b></td><td><font color=#CC0000><b>{{ items.totalup }}</b> mins.</font></td></tr> 
+            <tr bgcolor=#fefefe><td><b>Total Servers Down:</b></td><td><font color=#CC0000><b>{{ items.totaldown }}</b></font></td></tr></table>
+          <b><font color=#CC0000>Actions: </font></b><a href="{{ items.base_url }}/cgi-bin/cmd.cgi?cmd_typ=100&host={{ items.host_name }}&service={{ items.serv_desc }}"><b>Stop Obsessing</b></a><br/><br/> 
+                  </td>
+        </table><br/><br/>
+        <div><a target='_blank' href='https://mongu.ru'><img ALIGN='Left' src='https://mongu.ru/static/imgs/logo_40px.png'></a>
+          <span>Email sent by Nagios hosted by <a target='_blank' href='https://mongu.ru'>MonGuru</a>. <br>Follow us on <a target='_blank' href='http://twitter.com/mongurus'>Twitter</a>.</span></div>
+      </body>
+</html> 
